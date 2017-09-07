@@ -1,0 +1,112 @@
+@font-face {
+  font-family: icons;
+  src: url("../../fonts/icons/turn-arrow.svg");
+  src: url("../../fonts/icons/turn-arrow.ttf");
+  src: url("../../fonts/icons/turn-arrow.eot");
+  src: url("../../fonts/icons/turn-arrow.woff");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #ddd;
+}
+.imgSec_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /*元素在这个区域内的旋转时左右两侧的宽高差不多，
+  如果这个值很小时候，会发现左右两侧从视觉上差距很大*/
+  perspective: 800px;
+}
+/* 图片展示区域结束 */
+.img_sec {
+  box-sizing: border-box;
+  padding: 30px 30px 20px 30px;
+  position: absolute;
+  width: 300px;
+  height: 320px;
+  background-color: #fff;
+  transition: all .6s ease-in-out;
+  /*transform-origin  3个值 分别代表x y z,此时以最左边为旋转轴*/
+  transform-origin: 0 50% 0;
+  /*在3d变换的时候，都需要加上 preserve-3d*/
+  transform-style: preserve-3d;
+}
+
+.is_inverse {
+  transform: translateX(300px) rotateY(180deg);
+}
+.img_title {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
+}
+.img_back {
+  box-sizing: border-box;
+  padding: 30px 30px 20px 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 320px;
+  background-color: #fff;
+  text-align: center;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+/* 图片展示区域结束 */
+/* 导航开始 */
+.controller_nav {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  height: 30px;
+  z-index: 101;
+  text-align: center;
+}
+.unit {
+  display: inline-block;
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50% 50%;
+  transform: scale(.5);
+  background-color: #aaa;
+  vertical-align: middle;
+  transition: all .5s;
+}
+.unit:last-child {
+  margin: 0;
+}
+.unit_center {
+  transform: scale(1);
+  background-color: #888;
+}
+.unit_center::after {
+  content: '\e600';
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  font-family: icons;
+  color: #fff;
+  text-align: center;
+  /*为了在mac本上面，字体显示的更清晰设置的，消除字体边缘的锯齿*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.unit_inverse {
+  background-color: #555;
+  transform: rotateY(180deg);
+}
+/* 导航结束 */
